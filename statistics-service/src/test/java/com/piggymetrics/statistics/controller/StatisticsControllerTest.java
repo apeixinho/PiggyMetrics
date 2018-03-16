@@ -23,7 +23,9 @@ import java.util.Date;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -37,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class StatisticsControllerTest {
 
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @InjectMocks
     private StatisticsController statisticsController;
@@ -108,7 +110,7 @@ public class StatisticsControllerTest {
         account.setExpenses(ImmutableList.of(grocery));
         account.setIncomes(ImmutableList.of(salary));
 
-        String json = mapper.writeValueAsString(account);
+        String json = MAPPER.writeValueAsString(account);
 
         mockMvc.perform(put("/test").contentType(MediaType.APPLICATION_JSON).content(json))
                 .andExpect(status().isOk());

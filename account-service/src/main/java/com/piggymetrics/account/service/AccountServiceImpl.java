@@ -19,7 +19,7 @@ import java.util.Date;
 @Service
 public class AccountServiceImpl implements AccountService {
 
-	private final Logger log = LoggerFactory.getLogger(getClass());
+	private final Logger LOG = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private StatisticsServiceClient statisticsClient;
@@ -35,7 +35,7 @@ public class AccountServiceImpl implements AccountService {
 	 */
 	@Override
 	public Account findByName(String accountName) {
-		Assert.hasLength(accountName);
+                Assert.hasLength(accountName, "Account Name cannot be null");
 		return repository.findByName(accountName);
 	}
 
@@ -64,7 +64,7 @@ public class AccountServiceImpl implements AccountService {
 
 		repository.save(account);
 
-		log.info("new account has been created: " + account.getName());
+		LOG.info("new account has been created: " + account.getName());
 
 		return account;
 	}
@@ -85,7 +85,7 @@ public class AccountServiceImpl implements AccountService {
 		account.setLastSeen(new Date());
 		repository.save(account);
 
-		log.debug("account {} changes has been saved", name);
+		LOG.debug("account {} changes has been saved", name);
 
 		statisticsClient.updateStatistics(name, account);
 	}
