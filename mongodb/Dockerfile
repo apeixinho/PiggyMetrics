@@ -36,6 +36,8 @@ RUN set -ex; \
 	# verify that the binary works
 	gosu nobody true; \
 	\
-	apk del .gosu-deps
+	apk del .gosu-deps; \
+	rm -rf /var/cache/apk/* || return 0;
 
 ENTRYPOINT ["/init.sh"]
+# CMD ["tail","-f", "/dev/null"]

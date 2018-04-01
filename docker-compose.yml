@@ -1,4 +1,4 @@
-version: '2.1'
+version: '2.3'
 services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -102,7 +102,7 @@ services:
       options:
         max-size: "10m"
         max-file: "10"
-
+        
   statistics-service:
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
