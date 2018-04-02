@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh 
 if test -z "$MONGODB_PASSWORD"; then
     echo "MONGODB_PASSWORD not defined"
     exit 1
